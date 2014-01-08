@@ -2,10 +2,6 @@ taggingengine
 =============
 
 Custom tagging engine for PHP
-taggingengine
-=============
-
-Custom tagging engine for PHP
 
 
 Usage
