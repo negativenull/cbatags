@@ -10,13 +10,13 @@ Custom tagging engine for PHP
 
 Usage
 ================
-
+```php
 include 'tag.php';
 $content = 'this is a test [tag:youtube("http://youtu.be/lxNORk0vKd0")] this is a test';
 $tag = new Tag();
 $newcontent = $tag->processTag($content);
 echo $newcontent;
-
+```
 
 What is going on
 =======================
@@ -27,7 +27,7 @@ On page render, you run the processTags function and all tags get replaced with 
 
 More complex example that shows multiple tags in one string (most likely loaded from the database or read from a template file)
 =========================
-<code>
+```php
 include 'tag.php';
 $content = '
 this is a test [tag:youtube("http://youtu.be/lxNORk0vKd0")] this is a test <br />
@@ -36,8 +36,7 @@ this is a test [tag:youtube("http://youtu.be/lxNORk0vKd0")] this is a test <br /
 [tag:helloWorld()] <br />
 [tag:displayLine("25px")] <br />
 [tag:displaySquare("25px", "60px")] <br />
-';<br />
-$tag = new Tag();<br />
+';
+$tag = new Tag();
 echo $tag->processTag($content);
-
-</code>
+```
