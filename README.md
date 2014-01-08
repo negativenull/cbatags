@@ -1,4 +1,4 @@
-taggingengine
+CBAtags
 =============
 
 Custom tagging engine for PHP
