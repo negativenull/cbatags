@@ -12,7 +12,7 @@ class Tag {
 		$this->cond=true;
 	}
 
-	function processTag($content) {
+	function processTags($content) {
 		$newContent = $content;
 		$this->content = $content;
 		$tagstringoffset = strlen($this->tagstring)+2;
