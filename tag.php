@@ -10,6 +10,7 @@ class Tag {
 	function __construct($tagstring='tag') {
 		$this->tagstring=$tagstring;
 		$this->cond=true;
+		$this->variables = array();
 	}
 
 	function processTags($content) {
@@ -61,19 +62,19 @@ class Tag {
 			//if cond=false, we want to skip the offset to after the endcond so nothing shows
 			if(!$this->cond) {
 				$endcondpos=strpos ( $newContent , "[".$this->tagstring.":endcond()]",$offset);
-				//echo "Removing from: ".$start." to: ".$endcondpos."<br />";
-				$newContent = substr_replace ( $newContent, "" , $start, $endcondpos-3);
+				$newContent = substr_replace ( $newContent, "" , $start, $endcondpos-4);
 				//$offset=$endcondpos;
 			}
+			$this->content = $newContent;
 
 		}
 		return $newContent;
 	}
 
 	
-//*****************************************************************************************************************************************
-//** Special Helper Functions *************************************************************************************************************
-//*****************************************************************************************************************************************
+// *****************************************************************************************************************************************
+// ** Special Helper Functions *************************************************************************************************************
+// *****************************************************************************************************************************************
 	private function replace($newstring) {
 		return $this->str_replace_once($this->tag, $newstring, $this->content);
 	}
@@ -83,6 +84,7 @@ class Tag {
 		   // Nothing found
 		   return $haystack;
 	   }
+	   
 	   return substr_replace($haystack, $replace, $pos, strlen($needle));
 	}
 	
@@ -92,39 +94,37 @@ class Tag {
 //*****************************************************************************************************************************************
 //** Example Tag Functions ****************************************************************************************************************
 //*****************************************************************************************************************************************
-//** Notes:
-//** Very simple example function
-//** 
-/**/	private function helloWorld($args=array()) {
-/**/		return $this->replace("Hello World");
-/**/	}
-//** 
-//** This would replace the tag [tag:helloWorld()] with Hello World
-//**
-//** be sure to leave the '__FUNCTION__', $content, and $args alone
-//** 
-//** if you want parameters passed into the function, use the $args array parameter
-//**
-//** simple example with 1 arg
-//**
-/**/ private function displayLine($args=array()) {
-/**/ 	$line = "<div style='width:".$args[0].";height:0px;border-bottom:#000 1px solid;' ></div>";
-/**/	return $this->replace($line);
-/**/}
-//**
-//** The tag would look like: [tag:displayLine(25px)] or [tag:displayLine("25px")]
-//**
-//** simple example with 2 args
-//**
-/**/ private function displaySquare($args=array()) {
-/**/	$square = "<div style='width:".$args[0].";height:".$args[1].";border:#000 1px solid;' ></div>";
-/**/	return $this->replace($square);
-/**/}
-//**
-//** The tag would look like: [tag:displaySquare(100px,100px)] or [tag:displaySquare("100px","100px")]
-//**
-//** 
-//**/
+// Notes:
+// Very simple example function
+// 
+	private function helloWorld($args=array()) {
+		return $this->replace("Hello World");
+	}
+// 
+// This would replace the tag [tag:helloWorld()] with Hello World
+//
+
+//
+// if you want parameters passed into the function, use the $args array parameter
+// simple example with 1 arg
+//
+	private function displayLine($args=array()) {
+		$line = "<div style='width:".$args[0].";height:0px;border-bottom:#000 1px solid;' ></div>";
+		return $this->replace($line);
+	}
+	//
+// The tag would look like: [tag:displayLine(25px)] or [tag:displayLine("25px")]
+//
+// simple example with 2 args
+//
+	private function displaySquare($args=array()) {
+		$square = "<div style='width:".$args[0].";height:".$args[1].";border:#000 1px solid;' ></div>";
+		return $this->replace($square);
+	}
+//
+// The tag would look like: [tag:displaySquare(100px,100px)] or [tag:displaySquare("100px","100px")]
+//
+
 //*****************************************************************************************************************************************
 //** Example Tag Functions ****************************************************************************************************************
 //*****************************************************************************************************************************************
@@ -196,7 +196,7 @@ class Tag {
 		$variable = $args[0];
 		$value = $args[1];
 		$this->variables[$variable] = $value;
-		return $this->replace("");
+		return $this->replace('');
 	}
 	private function assignvartovar($args=array()) {
 		$variable1 = $args[0];
