@@ -25,10 +25,9 @@ class Tag {
 		
 		foreach($matches[0] as $tag) {
 			$this->tag = $tag;
-			preg_match("/.*:(.*)\(/", $tag, $output_array);
+			preg_match("/.*:(.*)\((.*)\)/", $tag, $output_array);
 			$func = $output_array[1];
-			preg_match("/.*\((.*)\)/", $tag, $output_array);
-			$parmsstr = $output_array[1];
+			$parmsstr = $output_array[2];
 			$parms = str_getcsv($parmsstr);
 
 			if((method_exists($this, $func) && $this->cond) || $func=='endcond') {
