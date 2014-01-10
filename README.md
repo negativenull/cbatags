@@ -3,6 +3,20 @@ CBAtags
 
 Custom tagging engine for PHP
 
+What is a tag
+================
+A tag is a simple text block that is representive of what *should* be there, but is not generated/replaced until page load.
+
+```
+[tag:youtube("http://youtu.be/lxNORk0vKd0")]
+[tag:helloWorld()]
+```
+
+The above tags would get rendered as:
+```html
+<iframe width="560" height="315" src="//www.youtube.com/embed/lxNORk0vKd0" frameborder="0" allowfullscreen></iframe>
+Hello World
+```
 
 Usage
 ================
