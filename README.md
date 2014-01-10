@@ -28,14 +28,9 @@ $newcontent = $tag->processTag($content);
 echo $newcontent;
 ```
 
-What is going on
-=======================
-You store the tag as a tag in a database or template file ([tag:youtube("http://youtu.be/lxNORk0vKd0")] in this case).
-On page render, you run the processTags function and all tags get replaced with real content.
 
 
-
-More complex example that shows multiple tags in one string 
+More complex example
 =========================
 ```php
 include 'tag.php';
@@ -61,7 +56,7 @@ private function helloWorld($args=array()) {
     return $this->replace("Hello World");
 }
 ```
-This would replace the tag [tag:helloWorld()] with "Hello World" (no quotes)
+
 
 If you want parameters passed into the function, use the $args array parameter
 
