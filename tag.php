@@ -18,57 +18,32 @@ class Tag {
 		$this->content = $content;
 		$tagstringoffset = strlen($this->tagstring)+2;
 		$offset=0;
-		while(($start = strpos($newContent, '['.$this->tagstring.':', $offset))!==false) {
-			$offset=$start;
-			if(!$end = strpos($newContent, ']', $start+1)) {
-				//there is no ending ] character
-				return $newContent;
-			}
-			$length = $end-$start;
-			$str = substr($newContent, $start+$tagstringoffset, $length-$tagstringoffset);
-			$this->tag = '['.$this->tagstring.':'.$str.']';
 		
-			$func = "";
-			$parms = array();
-			if(strpos($str, "(")===false) {
-				//there is no ( char
-				$offset=$end;
-				continue;
-			}
-			$func = substr($str, 0, strpos($str, "("));
-
-			$s = strpos($str, "(");
-			
-			if(strpos($str, ")")===false) {
-				//there is no ) char
-				$offset=$end;
-				continue;
-			}
-			$e = strpos($str, ")");
-			$parmsstr = substr($str, $s+1,$e-$s-1);
-
+		$pattern = '|\['.$this->tagstring.':.*(.*)\]|';
+		
+		preg_match_all($pattern, $content, $matches);
+		
+		foreach($matches[0] as $tag) {
+			$this->tag = $tag;
+			preg_match("/.*:(.*)\(/", $tag, $output_array);
+			$func = $output_array[1];
+			preg_match("/.*\((.*)\)/", $tag, $output_array);
+			$parmsstr = $output_array[1];
 			$parms = str_getcsv($parmsstr);
-			//$parms = explode(",", $parmsstr);
-			
-
 
 			if((method_exists($this, $func) && $this->cond) || $func=='endcond') {
 				$newContent = $this->$func($parms);
 				$alterContent=true;
-			} else {
-				$offset=$end;
 			}
-			
-			//if cond=false, we want to skip the offset to after the endcond so nothing shows
 			if(!$this->cond) {
 				$endcondpos=strpos ( $newContent , "[".$this->tagstring.":endcond()]",$offset);
 				$newContent = substr_replace ( $newContent, "" , $start, $endcondpos-4);
-				//$offset=$endcondpos;
 			}
 			$this->content = $newContent;
-
 		}
 		return $newContent;
+		
+		
 	}
 
 	
