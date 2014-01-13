@@ -75,7 +75,7 @@ Notice I am using "tagger" instead of "tag" here.  That is customizable.
 
 Creating new tags
 =============
-Create a function that looks like this (php):
+(php):
 ```php
 private function helloWorld($args=array()) {
     return $this->replace("Hello World");
@@ -87,9 +87,11 @@ def helloWorld(self, args):
 		return self.replace("Hello World");
 ```
 
-If you want parameters passed into the function, use the $args array parameter
 
-Simple example with 1 arg (php)
+
+Simple example with 1 arg
+================
+(php)
 ```php
 private function displayLine($args=array()) {
     $line = "<div style='width:".$args[0].";height:0px;border-bottom:#000 1px solid;' ></div>";
@@ -104,7 +106,9 @@ def displayLine(self, args):
 ```
 The tag would look like: [tag:displayLine(25px)] or [tag:displayLine("25px")]
 
-Simple example with 2 args (php)
+Simple example with 2 args
+================
+(php)
 ```php
 private function displaySquare($args=array()) {
     $square = "<div style='width:".$args[0].";height:".$args[1].";border:#000 1px solid;' ></div>";
