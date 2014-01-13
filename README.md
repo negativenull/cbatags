@@ -1,7 +1,7 @@
 CBAtags
 =============
 
-Custom tagging engine for PHP
+Custom tagging engine for PHP or Python
 
 What is a tag
 ================
@@ -18,7 +18,7 @@ The above tags would get rendered as:
 Hello World
 ```
 
-Usage
+Usage (php)
 ================
 ```php
 include 'tag.php';
@@ -28,6 +28,16 @@ $newcontent = $tag->processTag($content);
 echo $newcontent;
 ```
 
+Usage (python)
+================
+```python
+#!/usr/bin/python
+from tag import Tag
+
+tags = Tag('tag')
+content = 'this is a test [tag:youtube("http://youtu.be/lxNORk0vKd0")] this is a test'
+print tags.processTags(content)
+```
 
 
 More complex example
@@ -45,37 +55,69 @@ this is a test [tagger:youtube("http://youtu.be/lxNORk0vKd0")] this is a test <b
 $tag = new Tag($tagstring='tagger');
 echo $tag->processTag($content);
 ```
+
+```python
+#!/usr/bin/python
+from tag import Tag
+
+tags = Tag('tagger')
+content = '''
+[tagger:youtube("http://youtu.be/lxNORk0vKd0",300,200)] 
+[tagger:helloWorld()] 
+[tagger:displayLine("25px")] 
+[tagger:displaySquare("25px", 99px)] 
+'''
+print tags.processTags(content)
+```
+
 Notice I am using "tagger" instead of "tag" here.  That is customizable.
 
 
 Creating new tags
 =============
-Create a function that looks like this:
+Create a function that looks like this (php):
 ```php
 private function helloWorld($args=array()) {
     return $this->replace("Hello World");
 }
 ```
-
+(python)
+```python
+def helloWorld(self, args):	
+		return self.replace("Hello World");
+```
 
 If you want parameters passed into the function, use the $args array parameter
 
-Simple example with 1 arg
+Simple example with 1 arg (php)
 ```php
 private function displayLine($args=array()) {
     $line = "<div style='width:".$args[0].";height:0px;border-bottom:#000 1px solid;' ></div>";
     return $this->replace($line);
 }
 ```
+(python)
+```python
+def displayLine(self, args):
+		line = "<div style='width:%s;height:0px;border-bottom:#000 1px solid;' ></div>"%args[0]
+		return self.replace(line)
+```
 The tag would look like: [tag:displayLine(25px)] or [tag:displayLine("25px")]
 
-Simple example with 2 args
+Simple example with 2 args (php)
 ```php
 private function displaySquare($args=array()) {
     $square = "<div style='width:".$args[0].";height:".$args[1].";border:#000 1px solid;' ></div>";
     return $this->replace($square);
 }
 ```
+(python)
+```python
+def displaySquare(self, args):
+		square = "<div style='width:%s;height:%s;border:#000 1px solid;' ></div>"%(args[0],args[1])
+		return self.replace(square)
+```
+
 The tag would look like: [tag:displaySquare(25px, 25px)] or [tag:displaySquare("25px", "25px")]
 
 
