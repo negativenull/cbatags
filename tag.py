@@ -79,4 +79,37 @@ class Tag:
 	#	
 
 
+	def todaysDate(self, args):
+		import time
+		return self.replace(time.strftime('%A %B %d, %Y'))
+
+	def shortDate(self, args):
+		import time
+		return self.replace(time.strftime("%m/%d/%Y"))
+
+
+	def comment(self, args):
+		return self.replace('')
+
+
+
+
+	def youtube(self, args):
+		url=args[0]
+		width=560
+		height=315
+		if(len(args)==3):
+			width=args[1]
+			height=args[2]
+		
+		from urlparse import urlparse
+		o = urlparse(url)
+		path = o.path
+		
+		vidcontent = '<iframe width="'+width+'" height="'+height+'" src="//www.youtube.com/embed'+path+'" frameborder="0" allowfullscreen></iframe>'
+		
+		return self.replace(vidcontent)
+        
+
+
 		

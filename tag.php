@@ -117,32 +117,6 @@ class Tag {
 	}
 	
 
-	
-	private function flashVideo($content, $args=array()) {
-		$url=$args[0];
-		$width=360;
-		$height=270;
-		if(!empty($args[1])) {
-			$width=$args[1];
-		}
-		if(!empty($args[2])) {
-			$height=$args[2];
-		}
-		
-		$object='<object width="'.$width.'" height="'.$height.'" data="http://media.schoolfusion.us/modules/podcast/player/flowplayer-3.1.0.swf" type="application/x-shockwave-flash"> 
-				<param value="http://media.schoolfusion.us/modules/podcast/player/flowplayer-3.1.0.swf" name="movie">  
-				<param value="config={\'playlist\':[{\'url\':\''.$url.'\',\'autoPlay\': false}], \'wmode\':\'opaque\', \'clip\':{\'scaling\': \'scale\'}}" name="flashvars"> 
-				<param value="opaque" name="wmode">
-				<param value="true" name="allowfullscreen">  
-				<embed width="'.$width.'" height="'.$height.'" flashvars="config={\'playlist\':[{\'url\':\''.$url.'\',\'autoPlay\': false}], \'wmode\':\'opaque\', \'clip\':{\'scaling\': \'scale\'}}" wmode="opaque" src="http://media.schoolfusion.us/modules/podcast/player/flowplayer-3.1.0.swf" type="application/x-shockwave-flash"> 
-				</object>';
-		
-		
-		return $this->replace($object);
-		
-	}
-	
-
 	//example usage:
 	// [tag:youtube("http://youtu.be/lxNORk0vKd0",300,200)]
 	// [tag:youtube("http://youtu.be/lxNORk0vKd0")]

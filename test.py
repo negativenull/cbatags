@@ -7,6 +7,8 @@ content = '''
 [tag:helloWorld()] 
 [tag:displayLine("25px")] 
 [tag:displaySquare("25px", 99px)] 
+[tag:todaysDate()] 
+[tag:shortDate()] 
 '''
 print tags.processTags(content)
 
