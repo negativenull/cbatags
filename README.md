@@ -75,13 +75,13 @@ Notice I am using "tagger" instead of "tag" here.  That is customizable.
 
 Creating new tags
 =============
-(php):
+php:
 ```php
 private function helloWorld($args=array()) {
     return $this->replace("Hello World");
 }
 ```
-(python)
+python
 ```python
 def helloWorld(self, args):	
 		return self.replace("Hello World");
@@ -91,14 +91,14 @@ def helloWorld(self, args):
 
 Simple example with 1 arg
 ================
-(php)
+php
 ```php
 private function displayLine($args=array()) {
     $line = "<div style='width:".$args[0].";height:0px;border-bottom:#000 1px solid;' ></div>";
     return $this->replace($line);
 }
 ```
-(python)
+python
 ```python
 def displayLine(self, args):
 		line = "<div style='width:%s;height:0px;border-bottom:#000 1px solid;' ></div>"%args[0]
@@ -108,14 +108,14 @@ The tag would look like: [tag:displayLine(25px)] or [tag:displayLine("25px")]
 
 Simple example with 2 args
 ================
-(php)
+php
 ```php
 private function displaySquare($args=array()) {
     $square = "<div style='width:".$args[0].";height:".$args[1].";border:#000 1px solid;' ></div>";
     return $this->replace($square);
 }
 ```
-(python)
+python
 ```python
 def displaySquare(self, args):
 		square = "<div style='width:%s;height:%s;border:#000 1px solid;' ></div>"%(args[0],args[1])
