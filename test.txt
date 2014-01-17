@@ -1,0 +1,6 @@
+[tagger:youtube("http://youtu.be/lxNORk0vKd0",300,200)] 
+[tagger:helloWorld()] 
+[tagger:displayLine("25px")] 
+[tagger:displaySquare("25px", 99px)] 
+[tagger:todaysDate()] 
+[tagger:shortDate()] 
