@@ -46,11 +46,11 @@ More complex example
 include 'tag.php';
 $content = '
 this is a test [tagger:youtube("http://youtu.be/lxNORk0vKd0")] this is a test <br />
-[tag:todaysDate()] <br />
-[tag:shortDate()] <br />
-[tag:helloWorld()] <br />
-[tag:displayLine("25px")] <br />
-[tag:displaySquare("25px", "60px")] <br />
+[tagger:todaysDate()] <br />
+[tagger:shortDate()] <br />
+[tagger:helloWorld()] <br />
+[tagger:displayLine("25px")] <br />
+[tagger:displaySquare("25px", "60px")] <br />
 ';
 $tag = new Tag($tagstring='tagger');
 echo $tag->processTag($content);
