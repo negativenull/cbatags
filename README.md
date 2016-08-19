@@ -20,6 +20,7 @@ Hello World
 
 Composer Installation (composer.json)
 ================
+```json
 {
     "repositories": [
         {
@@ -32,6 +33,7 @@ Composer Installation (composer.json)
     }
 
 }
+```
 
 Then:
 require_once __DIR__ . '/vendor/autoload.php'; // Autoload files using Composer autoload
