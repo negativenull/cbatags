@@ -1,0 +1,8 @@
+{
+  "name": "negativenull/cbatags",
+  "autoload": {
+    "psr-0" : {
+      "Negativenull\\Cbatags" : "src"
+    }
+  }
+}
