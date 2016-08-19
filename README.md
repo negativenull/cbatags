@@ -18,10 +18,34 @@ The above tags would get rendered as:
 Hello World
 ```
 
+Composer Installation (composer.json)
+================
+```json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/negativenull/cbatags"
+        }
+    ],
+    "require": {
+        "negativenull/cbatags": "dev-master"
+    }
+
+}
+```
+
+Then:
+```php
+require_once __DIR__ . '/vendor/autoload.php'; // Autoload files using Composer autoload
+
+use Negativenull\Cbatags\Tag;
+```
+
+
 Usage (php)
 ================
 ```php
-include 'tag.php';
 $content = 'this is a test [tag:youtube("http://youtu.be/lxNORk0vKd0")] this is a test';
 $tag = new Tag();
 $newcontent = $tag->processTag($content);
@@ -43,7 +67,6 @@ print tags.processTags(content)
 More complex example
 =========================
 ```php
-include 'tag.php';
 $content = '
 this is a test [tagger:youtube("http://youtu.be/lxNORk0vKd0")] this is a test <br />
 [tagger:todaysDate()] <br />
