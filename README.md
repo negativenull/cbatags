@@ -36,10 +36,11 @@ Composer Installation (composer.json)
 ```
 
 Then:
+```php
 require_once __DIR__ . '/vendor/autoload.php'; // Autoload files using Composer autoload
 
 use Negativenull\Cbatags\Tag;
-
+```
 
 
 Usage (php)
